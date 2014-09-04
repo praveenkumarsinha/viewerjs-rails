@@ -126,81 +126,81 @@ select {
   visibility: hidden;
 }
 
-html[dir='ltr'] #toolbarLeft {
+div[dir='ltr'] #toolbarLeft {
   margin-left: -1px;
 }
 
-html[dir='rtl'] #toolbarRight {
+div[dir='rtl'] #toolbarRight {
   margin-left: -1px;
 }
 
-html[dir='ltr'] #toolbarLeft,
-html[dir='rtl'] #toolbarRight {
+div[dir='ltr'] #toolbarLeft,
+div[dir='rtl'] #toolbarRight {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-html[dir='ltr'] #toolbarRight,
-html[dir='rtl'] #toolbarLeft {
+div[dir='ltr'] #toolbarRight,
+div[dir='rtl'] #toolbarLeft {
   position: absolute;
   top: 0;
   right: 0;
 }
 
-html[dir='ltr'] #toolbarLeft > *,
-html[dir='ltr'] #toolbarMiddle > *,
-html[dir='ltr'] #toolbarRight > * {
+div[dir='ltr'] #toolbarLeft > *,
+div[dir='ltr'] #toolbarMiddle > *,
+div[dir='ltr'] #toolbarRight > * {
   float: left;
 }
 
-html[dir='rtl'] #toolbarLeft > *,
-html[dir='rtl'] #toolbarMiddle > *,
-html[dir='rtl'] #toolbarRight > * {
+div[dir='rtl'] #toolbarLeft > *,
+div[dir='rtl'] #toolbarMiddle > *,
+div[dir='rtl'] #toolbarRight > * {
   float: right;
 }
 
 /* outer/inner center provides horizontal center */
-html[dir='ltr'] .outerCenter {
+div[dir='ltr'] .outerCenter {
   float: right;
   position: relative;
   right: 50%;
 }
 
-html[dir='rtl'] .outerCenter {
+div[dir='rtl'] .outerCenter {
   float: left;
   position: relative;
   left: 50%;
 }
 
-html[dir='ltr'] .innerCenter {
+div[dir='ltr'] .innerCenter {
   float: right;
   position: relative;
   right: -50%;
 }
 
-html[dir='rtl'] .innerCenter {
+div[dir='rtl'] .innerCenter {
   float: left;
   position: relative;
   left: -50%;
 }
 
-html[dir='ltr'] .splitToolbarButton {
+div[dir='ltr'] .splitToolbarButton {
   margin: 3px 2px 4px 0;
   display: inline-block;
 }
 
-html[dir='rtl'] .splitToolbarButton {
+div[dir='rtl'] .splitToolbarButton {
   margin: 3px 0 4px 2px;
   display: inline-block;
 }
 
-html[dir='ltr'] .splitToolbarButton > .toolbarButton {
+div[dir='ltr'] .splitToolbarButton > .toolbarButton {
   border-radius: 0;
   float: left;
 }
 
-html[dir='rtl'] .splitToolbarButton > .toolbarButton {
+div[dir='rtl'] .splitToolbarButton > .toolbarButton {
   border-radius: 0;
   float: right;
 }
@@ -218,13 +218,13 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
   background-image: none;
 }
 
-html[dir='ltr'] .toolbarButton,
-html[dir='ltr'] .dropdownToolbarButton {
+div[dir='ltr'] .toolbarButton,
+div[dir='ltr'] .dropdownToolbarButton {
   margin: 3px 2px 4px 0;
 }
 
-html[dir='rtl'] .toolbarButton,
-html[dir='rtl'] .dropdownToolbarButton {
+div[dir='rtl'] .toolbarButton,
+div[dir='rtl'] .dropdownToolbarButton {
   margin: 3px 0 4px 2px;
 }
 
@@ -374,13 +374,13 @@ html[dir='rtl'] .dropdownToolbarButton {
   transition-timing-function: ease;
 }
 
-html[dir='ltr'] .toolbarButton,
-html[dir='ltr'] .dropdownToolbarButton {
+div[dir='ltr'] .toolbarButton,
+div[dir='ltr'] .dropdownToolbarButton {
   margin: 3px 2px 4px 0;
 }
 
-html[dir='rtl'] .toolbarButton,
-html[dir='rtl'] .dropdownToolbarButton {
+div[dir='rtl'] .toolbarButton,
+div[dir='rtl'] .dropdownToolbarButton {
   margin: 3px 0 4px 2px;
 }
 
@@ -413,8 +413,8 @@ html[dir='rtl'] .dropdownToolbarButton {
   box-shadow: 0 1px 1px hsla(0, 0%, 0%, .2) inset, 0 0 1px hsla(0, 0%, 0%, .3) inset, 0 1px 0 hsla(0, 0%, 100%, .05);
 }
 
-html[dir='ltr'] .splitToolbarButton > .toolbarButton:first-child,
-html[dir='rtl'] .splitToolbarButton > .toolbarButton:last-child {
+div[dir='ltr'] .splitToolbarButton > .toolbarButton:first-child,
+div[dir='rtl'] .splitToolbarButton > .toolbarButton:last-child {
   position: relative;
   margin: 0;
   margin-left: 4px;
@@ -424,8 +424,8 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton:last-child {
   border-right-color: transparent;
 }
 
-html[dir='ltr'] .splitToolbarButton > .toolbarButton:last-child,
-html[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
+div[dir='ltr'] .splitToolbarButton > .toolbarButton:last-child,
+div[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
   position: relative;
   margin: 0;
   margin-left: -1px;
@@ -444,11 +444,11 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
   margin: 5px 0;
 }
 
-html[dir='ltr'] .splitToolbarButtonSeparator {
+div[dir='ltr'] .splitToolbarButtonSeparator {
   float: left;
 }
 
-html[dir='rtl'] .splitToolbarButtonSeparator {
+div[dir='rtl'] .splitToolbarButtonSeparator {
   float: right;
 }
 
@@ -480,11 +480,11 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
   border-bottom: 1px rgba(255, 255, 255, .5) solid;
 }
 
-html[dir='ltr'] .dropdownToolbarButton {
+div[dir='ltr'] .dropdownToolbarButton {
   background-position: 95%;
 }
 
-html[dir='rtl'] .dropdownToolbarButton {
+div[dir='rtl'] .dropdownToolbarButton {
   background-position: 5%;
 }
 
