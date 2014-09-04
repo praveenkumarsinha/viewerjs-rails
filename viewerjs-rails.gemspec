@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "viewerjs-rails"
   spec.version       = Viewerjs::Rails::VERSION
   spec.authors       = ["Praveen Kumar Sinha"]
-  spec.email         = ["praveen@headerlabs.com"]
-  spec.summary       = "some summary will go soon here"
-  spec.description   = "Some description will go soon here"
-  spec.homepage      = ""
+  spec.email         = ["praveen.kumar.sinha@gmail.com"]
+  spec.summary       = "Viewerjs for Rails asset"
+  spec.description   = "Viewerjs's images, stylesheets and javascript files packed here to be used with Rails"
+  spec.homepage      = "https://github.com/praveenkumarsinha/viewerjs-rails"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
