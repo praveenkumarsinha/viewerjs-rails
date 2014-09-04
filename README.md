@@ -37,13 +37,6 @@ Add the following to your application.css:
  */
 ```
 
-Also pdf.worker.js as asset to precompile in application environment file (w.r.t application mode in
-config/environments/development.rb or config/environments/production.rb or any other environment being used):
-
-```rb
-  config.assets.precompile += %w( pdf.worker.js )
-```
-
 Add helper to embed blank viewer in specific controller's view:
 
 ```rb
