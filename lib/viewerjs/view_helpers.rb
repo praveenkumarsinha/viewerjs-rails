@@ -1,8 +1,15 @@
 module Viewerjs
   module ViewHelpers
-    def viewerjs_viewer(viewer_alignment = 'right')
+
+    #options = {
+    # viewer_alignment: 'right', #Possible values 'right' or 'left'
+    # title: nil #If nothing or nil is provided then referred document(with extension) is used in viewer's header title else the given title)
+    # }
+    def viewerjs_viewer(options = {viewer_alignment: 'right', title: nil})
+
+      options[:viewer_alignment] = (['right', 'left'].include?(options[:viewer_alignment]) ? options[:viewer_alignment] : 'left')
       _viewer = <<-EOM
-              <div dir="#{{'right' => 'rtl', 'left' => 'ltr'}[viewer_alignment]}">
+              <div dir="#{{'right' => 'rtl', 'left' => 'ltr'}[options[:viewer_alignment]]}">
                 <div id="viewer">
                   <div id="titlebar">
                     <div id="documentName"></div>
@@ -67,13 +74,10 @@ module Viewerjs
                 </div>
               </div>
               <script>
+                  var _document_title = "#{options[:title].blank? ? '' : options[:title]}";
                   loadDocument(window.location.hash);
               </script>
       EOM
-      #_viewer += <<-EOM
-      #    <p>This is Praveen Kumar Sinha</p>
-      #
-      #EOM
       raw(_viewer)
     end
   end

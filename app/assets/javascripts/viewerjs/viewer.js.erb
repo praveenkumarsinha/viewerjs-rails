@@ -110,7 +110,7 @@ function Viewer(c) {
             Q = document.getElementById("toolbarMiddleContainer"), O = document.getElementById("scaleSelect"), u = document.getElementById("dialogOverlay"), N = document.getElementById("toolbarRight"), n, L, t = [], k, F, G, H;
     this.initialize = function () {
         var a = String(document.location), z = a.indexOf("#"), a = a.substr(z + 1);
-        -1 === z || 0 === a.length ? console.log("Could not parse file path argument.") : (y = a, L = y.replace(/^.*[\\\/]/, ""), document.title = L, document.getElementById("documentName").innerHTML = document.title, c.onLoad = function () {
+        -1 === z || 0 === a.length ? console.log("Could not parse file path argument.") : (y = a, L = y.replace(/^.*[\\\/]/, ""), document.title = L, document.getElementById("documentName").innerHTML = ((_document_title.trim().length <= 0 ) ? document.title : _document_title.trim()), c.onLoad = function () {
             document.getElementById("pluginVersion").innerHTML =
                     c.getPluginVersion();
             (s = c.isSlideshow()) ? (d.classList.add("slideshow"), K.style.visibility = "visible") : (Q.style.visibility = "visible", c.getPageInView && (K.style.visibility = "visible"));
