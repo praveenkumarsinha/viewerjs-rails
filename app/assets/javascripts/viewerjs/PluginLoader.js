@@ -41,7 +41,6 @@
 var viewer;
 function loadDocument(documentUrl) {
     window.onload = function () {
-        console.log("Am i here!!!")
         viewer = new Viewer(new PDFViewerPlugin());
     };
 }

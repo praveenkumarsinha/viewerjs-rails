@@ -207,7 +207,7 @@ function PDFViewerPlugin() {
             //TODO: Make it available from asset pipeline
 //            PDFJS.workerSrc = "../viewer_js/javascripts/pdf.worker.js";
             PDFJS.workerSrc = "<%=javascript_path('pdf.worker.js') %>";
-            console.log(location);
+//            console.log(location);
             PDFJS.getDocument(location).then(function loadPDF(doc) {
                 pdfDocument = doc;
                 container = viewContainer;
