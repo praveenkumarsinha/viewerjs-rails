@@ -2,7 +2,7 @@
 
 This gem packages the Viewerjs assets (JavaScripts, stylesheets, and images) for the Rails [asset pipeline](http://guides.rubyonrails.org/asset_pipeline.html), so you never have to download a custom package through the [web interface](http://viewerjs.org/getit/) again.
 
-See [VERSIONS.md](VERSIONS.md) to see which versions of viewerjs-rails bundle.
+See [VERSIONS.md](/lib/viewerjs/rails/version.rb) to see which versions of viewerjs-rails bundle.
 
 ## Installation
 
@@ -41,6 +41,9 @@ Add helper to embed blank viewer in specific controller's view:
 
 ```rb
   <%= viewerjs_viewer %>
+  <%= viewerjs_viewer(viewer_alignment: 'left') %>
+  <%= viewerjs_viewer(title: 'Some title') %>
+  <%= viewerjs_viewer({viewer_alignment: 'right', title: 'Some title'}) %>
 ```
 
 And visit the page with static pdf path in reference after #. Please note that changing pdf path after # in url will not
