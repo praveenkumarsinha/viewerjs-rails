@@ -27,149 +27,151 @@
  */
 var PDFFindBar = {
 
-  opened: false,
-  bar: null,
-  toggleButton: null,
-  findField: null,
-  highlightAll: null,
-  caseSensitive: null,
-  findMsg: null,
-  findStatusIcon: null,
-  findPreviousButton: null,
-  findNextButton: null,
+    opened: false,
+    bar: null,
+    toggleButton: null,
+    findField: null,
+    highlightAll: null,
+    caseSensitive: null,
+    findMsg: null,
+    findStatusIcon: null,
+    findPreviousButton: null,
+    findNextButton: null,
 
-  initialize: function(options) {
-    if(typeof PDFFindController === 'undefined' || PDFFindController === null) {
-        throw 'PDFFindBar cannot be initialized ' +
-            'without a PDFFindController instance.';
-    }
-
-    this.bar = options.bar;
-    this.toggleButton = options.toggleButton;
-    this.findField = options.findField;
-    this.highlightAll = options.highlightAllCheckbox;
-    this.caseSensitive = options.caseSensitiveCheckbox;
-    this.findMsg = options.findMsg;
-    this.findStatusIcon = options.findStatusIcon;
-    this.findPreviousButton = options.findPreviousButton;
-    this.findNextButton = options.findNextButton;
-
-    var self = this;
-    this.toggleButton.addEventListener('click', function() {
-      self.toggle();
-    });
-
-    this.findField.addEventListener('input', function() {
-      self.dispatchEvent('');
-    });
-
-    this.bar.addEventListener('keydown', function(evt) {
-      switch (evt.keyCode) {
-        case 13: // Enter
-          if (evt.target === self.findField) {
-            self.dispatchEvent('again', evt.shiftKey);
-          }
-          break;
-        case 27: // Escape
-          self.close();
-          break;
-      }
-    });
-
-    this.findPreviousButton.addEventListener('click',
-      function() { self.dispatchEvent('again', true); }
-    );
-
-    this.findNextButton.addEventListener('click', function() {
-      self.dispatchEvent('again', false);
-    });
-
-    this.highlightAll.addEventListener('click', function() {
-      self.dispatchEvent('highlightallchange');
-    });
-
-    this.caseSensitive.addEventListener('click', function() {
-      self.dispatchEvent('casesensitivitychange');
-    });
-  },
-
-  dispatchEvent: function(aType, aFindPrevious) {
-    var event = document.createEvent('CustomEvent');
-    event.initCustomEvent('find' + aType, true, true, {
-      query: this.findField.value,
-      caseSensitive: this.caseSensitive.checked,
-      highlightAll: this.highlightAll.checked,
-      findPrevious: aFindPrevious
-    });
-    return window.dispatchEvent(event);
-  },
-
-  updateUIState: function(state, previous) {
-    var notFound = false;
-    var findMsg = '';
-    var status = '';
-
-    switch (state) {
-      case FindStates.FIND_FOUND:
-        break;
-
-      case FindStates.FIND_PENDING:
-        status = 'pending';
-        break;
-
-      case FindStates.FIND_NOTFOUND:
-        findMsg = mozL10n.get('find_not_found', null, 'Phrase not found');
-        notFound = true;
-        break;
-
-      case FindStates.FIND_WRAPPED:
-        if (previous) {
-          findMsg = mozL10n.get('find_reached_top', null,
-                      'Reached top of document, continued from bottom');
-        } else {
-          findMsg = mozL10n.get('find_reached_bottom', null,
-                                'Reached end of document, continued from top');
+    initialize: function (options) {
+        if (typeof PDFFindController === 'undefined' || PDFFindController === null) {
+            throw 'PDFFindBar cannot be initialized ' +
+                'without a PDFFindController instance.';
         }
-        break;
+
+        this.bar = options.bar;
+        this.toggleButton = options.toggleButton;
+        this.findField = options.findField;
+        this.highlightAll = options.highlightAllCheckbox;
+        this.caseSensitive = options.caseSensitiveCheckbox;
+        this.findMsg = options.findMsg;
+        this.findStatusIcon = options.findStatusIcon;
+        this.findPreviousButton = options.findPreviousButton;
+        this.findNextButton = options.findNextButton;
+
+        var self = this;
+        this.toggleButton.addEventListener('click', function () {
+            self.toggle();
+        });
+
+        this.findField.addEventListener('input', function () {
+            self.dispatchEvent('');
+        });
+
+        this.bar.addEventListener('keydown', function (evt) {
+            switch (evt.keyCode) {
+                case 13: // Enter
+                    if (evt.target === self.findField) {
+                        self.dispatchEvent('again', evt.shiftKey);
+                    }
+                    break;
+                case 27: // Escape
+                    self.close();
+                    break;
+            }
+        });
+
+        this.findPreviousButton.addEventListener('click',
+            function () {
+                self.dispatchEvent('again', true);
+            }
+        );
+
+        this.findNextButton.addEventListener('click', function () {
+            self.dispatchEvent('again', false);
+        });
+
+        this.highlightAll.addEventListener('click', function () {
+            self.dispatchEvent('highlightallchange');
+        });
+
+        this.caseSensitive.addEventListener('click', function () {
+            self.dispatchEvent('casesensitivitychange');
+        });
+    },
+
+    dispatchEvent: function (aType, aFindPrevious) {
+        var event = document.createEvent('CustomEvent');
+        event.initCustomEvent('find' + aType, true, true, {
+            query: this.findField.value,
+            caseSensitive: this.caseSensitive.checked,
+            highlightAll: this.highlightAll.checked,
+            findPrevious: aFindPrevious
+        });
+        return window.dispatchEvent(event);
+    },
+
+    updateUIState: function (state, previous) {
+        var notFound = false;
+        var findMsg = '';
+        var status = '';
+
+        switch (state) {
+            case FindStates.FIND_FOUND:
+                break;
+
+            case FindStates.FIND_PENDING:
+                status = 'pending';
+                break;
+
+            case FindStates.FIND_NOTFOUND:
+                findMsg = mozL10n.get('find_not_found', null, 'Phrase not found');
+                notFound = true;
+                break;
+
+            case FindStates.FIND_WRAPPED:
+                if (previous) {
+                    findMsg = mozL10n.get('find_reached_top', null,
+                        'Reached top of document, continued from bottom');
+                } else {
+                    findMsg = mozL10n.get('find_reached_bottom', null,
+                        'Reached end of document, continued from top');
+                }
+                break;
+        }
+
+        if (notFound) {
+            this.findField.classList.add('notFound');
+        } else {
+            this.findField.classList.remove('notFound');
+        }
+
+        this.findField.setAttribute('data-status', status);
+        this.findMsg.textContent = findMsg;
+    },
+
+    open: function () {
+        if (!this.opened) {
+            this.opened = true;
+            this.toggleButton.classList.add('toggled');
+            this.bar.classList.remove('hidden');
+        }
+
+        this.findField.select();
+        this.findField.focus();
+    },
+
+    close: function () {
+        if (!this.opened) return;
+
+        this.opened = false;
+        this.toggleButton.classList.remove('toggled');
+        this.bar.classList.add('hidden');
+
+        PDFFindController.active = false;
+    },
+
+    toggle: function () {
+        if (this.opened) {
+            this.close();
+        } else {
+            this.open();
+        }
     }
-
-    if (notFound) {
-      this.findField.classList.add('notFound');
-    } else {
-      this.findField.classList.remove('notFound');
-    }
-
-    this.findField.setAttribute('data-status', status);
-    this.findMsg.textContent = findMsg;
-  },
-
-  open: function() {
-    if (!this.opened) {
-      this.opened = true;
-      this.toggleButton.classList.add('toggled');
-      this.bar.classList.remove('hidden');
-    }
-
-    this.findField.select();
-    this.findField.focus();
-  },
-
-  close: function() {
-    if (!this.opened) return;
-
-    this.opened = false;
-    this.toggleButton.classList.remove('toggled');
-    this.bar.classList.add('hidden');
-
-    PDFFindController.active = false;
-  },
-
-  toggle: function() {
-    if (this.opened) {
-      this.close();
-    } else {
-      this.open();
-    }
-  }
 };
 

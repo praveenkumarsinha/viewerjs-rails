@@ -61,10 +61,10 @@ function ODFViewerPlugin() {
     // that should probably be provided by webodf
     function nsResolver(prefix) {
         var ns = {
-            'draw' : "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0",
-            'presentation' : "urn:oasis:names:tc:opendocument:xmlns:presentation:1.0",
-            'text' : "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
-            'office' : "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+            'draw': "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0",
+            'presentation': "urn:oasis:names:tc:opendocument:xmlns:presentation:1.0",
+            'text': "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
+            'office': "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
         };
         return ns[prefix] || console.log('prefix [' + prefix + '] unknown.');
     }
@@ -142,7 +142,8 @@ function ODFViewerPlugin() {
         return documentType === 'presentation';
     };
 
-    this.onLoad = function () {};
+    this.onLoad = function () {
+    };
 
     this.getWidth = function () {
         return odfElement.clientWidth;
@@ -179,7 +180,7 @@ function ODFViewerPlugin() {
     // return a list of tuples (pagename, pagenode)
     this.getPages = function () {
         var pageNodes = Array.prototype.slice.call(root.getElementsByTagNameNS(nsResolver('draw'), 'page')),
-            pages  = [],
+            pages = [],
             i,
             tuple;
 
