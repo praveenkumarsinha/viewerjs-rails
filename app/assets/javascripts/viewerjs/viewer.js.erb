@@ -117,8 +117,17 @@ function Viewer(c) {
             J = !0;
             t = c.getPages();
             document.getElementById("numPages").innerHTML = "of " + t.length;
+
+            _t_zoommodes = ['auto', 'custom', 'page-actual', 'page-width', 'page-height', 'page-fit']
+            if (typeof _document_zmode == 'undefined') {
+                _document_zmode = _t_zoommodes[0];
+            }
+            _t_selected_zoommode = (_t_zoommodes.indexOf(_document_zmode) == -1) ? _t_zoommodes[0] : _document_zmode;
+            if ((typeof _document_zlevel != 'undefined') && (_t_selected_zoommode == _t_zoommodes[1])) {
+                b.setZoomLevel(_document_zlevel);
+            }
             b.showPage(1);
-            e("auto");
+            e(_t_selected_zoommode);
             d.onscroll = D;
             E()
         }, c.initialize(d, a))
