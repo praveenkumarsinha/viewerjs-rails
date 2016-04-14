@@ -2,24 +2,24 @@
  * Copyright (C) 2012 KO GmbH <copyright@kogmbh.com>
  *
  * @licstart
- * This file is part of WebODF.
+ * This file is part of ViewerJS.
  *
- * WebODF is free software: you can redistribute it and/or modify it
+ * ViewerJS is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License (GNU AGPL)
  * as published by the Free Software Foundation, either version 3 of
  * the License, or (at your option) any later version.
  *
- * WebODF is distributed in the hope that it will be useful, but
+ * ViewerJS is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with WebODF.  If not, see <http://www.gnu.org/licenses/>.
+ * along with ViewerJS.  If not, see <http://www.gnu.org/licenses/>.
  * @licend
  *
- * @source: http://www.webodf.org/
- * @source: https://github.com/kogmbh/WebODF/
+ * @source: http://viewerjs.org/
+ * @source: http://github.com/kogmbh/ViewerJS
  */
 
 /*global runtime, document, odf, gui, console, webodf*/
@@ -49,22 +49,22 @@ function ODFViewerPlugin() {
             callback();
         };
 
-        document.getElementsByTagName('head')[0].appendChild(lib);
+        document.head.appendChild(lib);
 
-        pluginCSS = document.createElement('link');
-        pluginCSS.setAttribute("rel", "stylesheet");
-        pluginCSS.setAttribute("type", "text/css");
-        pluginCSS.setAttribute("href", "./ODFViewerPlugin.css");
+        pluginCSS = /**@type{!HTMLStyleElement}*/(document.createElementNS(document.head.namespaceURI, 'style'));
+        pluginCSS.setAttribute('media', 'screen, print, handheld, projection');
+        pluginCSS.setAttribute('type', 'text/css');
+        pluginCSS.appendChild(document.createTextNode(ODFViewerPlugin_css));
         document.head.appendChild(pluginCSS);
     }
 
     // that should probably be provided by webodf
     function nsResolver(prefix) {
         var ns = {
-            'draw': "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0",
-            'presentation': "urn:oasis:names:tc:opendocument:xmlns:presentation:1.0",
-            'text': "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
-            'office': "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+            'draw' : "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0",
+            'presentation' : "urn:oasis:names:tc:opendocument:xmlns:presentation:1.0",
+            'text' : "urn:oasis:names:tc:opendocument:xmlns:text:1.0",
+            'office' : "urn:oasis:names:tc:opendocument:xmlns:office:1.0"
         };
         return ns[prefix] || console.log('prefix [' + prefix + '] unknown.');
     }
@@ -110,7 +110,7 @@ function ODFViewerPlugin() {
                     shadowCursor = new gui.ShadowCursor(odtDocument);
                     sessionController = new gui.SessionController(session, localMemberId, shadowCursor, {});
                     eventManager = sessionController.getEventManager();
-                    caretManager = new gui.CaretManager(sessionController);
+                    caretManager = new gui.CaretManager(sessionController, odfCanvas.getViewport());
                     selectionViewManager = new gui.SelectionViewManager(gui.SvgSelectionView);
                     sessionView = new gui.SessionView({
                         caretAvatarsInitiallyVisible: false
@@ -142,16 +142,7 @@ function ODFViewerPlugin() {
         return documentType === 'presentation';
     };
 
-    this.onLoad = function () {
-    };
-
-    this.getWidth = function () {
-        return odfElement.clientWidth;
-    };
-
-    this.getHeight = function () {
-        return odfElement.clientHeight;
-    };
+    this.onLoad = function () {};
 
     this.fitToWidth = function (width) {
         odfCanvas.fitToWidth(width);
@@ -180,7 +171,7 @@ function ODFViewerPlugin() {
     // return a list of tuples (pagename, pagenode)
     this.getPages = function () {
         var pageNodes = Array.prototype.slice.call(root.getElementsByTagNameNS(nsResolver('draw'), 'page')),
-            pages = [],
+            pages  = [],
             i,
             tuple;
 
