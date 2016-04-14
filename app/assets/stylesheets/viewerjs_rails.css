@@ -11,5 +11,7 @@
  * file per style scope.
  *
  *= require viewer
+ *= require viewerTouch
  *= require PDFViewerPlugin
+ *= require ODFViewerPlugin
  */
