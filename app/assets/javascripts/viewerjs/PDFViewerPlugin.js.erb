@@ -40,18 +40,13 @@ function PDFViewerPlugin() {
     function init(callback) {
         var pluginCSS;
 
-        loadScript('./compatibility.js', function () {
-            loadScript('./pdf.js');
-            loadScript('./ui_utils.js');
-            loadScript('./text_layer_builder.js');
-            loadScript('./pdfjsversion.js', callback);
+        loadScript("<%= javascript_path('viewerjs/compatibility') %>", function () {
+            loadScript("<%= javascript_path('viewerjs/pdf') %>");
+            loadScript("<%= javascript_path('viewerjs/ui_utils') %>");
+            loadScript("<%= javascript_path('viewerjs/text_layer_builder') %>");
+            loadScript("<%= javascript_path('viewerjs/pdfjsversion') %>", callback);
         });
 
-        pluginCSS = /**@type{!HTMLStyleElement}*/(document.createElementNS(document.head.namespaceURI, 'style'));
-        pluginCSS.setAttribute('media', 'screen, print, handheld, projection');
-        pluginCSS.setAttribute('type', 'text/css');
-        pluginCSS.appendChild(document.createTextNode(PDFViewerPlugin_css));
-        document.head.appendChild(pluginCSS);
     }
 
     var self = this,

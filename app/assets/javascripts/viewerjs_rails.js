@@ -10,13 +10,5 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require viewerjs/viewer
-//= require viewerjs/PluginLoader
-//= require viewerjs/PDFViewerPlugin
-//= require viewerjs/compatibility
-//= require viewerjs/pdf
-//= require viewerjs/pdf_find_bar
-//= require viewerjs/pdf_find_controller
-//= require viewerjs/ui_utils
-//= require viewerjs/text_layer_builder
-//= require viewerjs/pdfjsversion
+//= require_tree ./viewerjs
+//

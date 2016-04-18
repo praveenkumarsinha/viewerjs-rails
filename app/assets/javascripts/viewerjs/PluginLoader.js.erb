@@ -58,7 +58,7 @@
                 supportsFileExtension: function(extension) {
                     return (odfFileExtensions.indexOf(extension) !== -1);
                 },
-                path: "./ODFViewerPlugin",
+                path: "<%=javascript_path('viewerjs/ODFViewerPlugin') %>",
                 getClass: function() { return ODFViewerPlugin; }
             };
         }()),
@@ -69,7 +69,7 @@
             supportsFileExtension: function(extension) {
                 return (extension === 'pdf');
             },
-            path: "./PDFViewerPlugin",
+            path: "<%=javascript_path('viewerjs/PDFViewerPlugin') %>",
             getClass: function() { return PDFViewerPlugin; }
         }
     ];
@@ -97,7 +97,7 @@
                 cb(matchingPluginData);
             }
         };
-        xhr.open("HEAD", documentUrl, true);
+        xhr.open("GET", documentUrl, true);
         xhr.send();
     }
 
@@ -203,18 +203,5 @@
             viewer = new Viewer();
         }
     };
-
-    css = /**@type{!HTMLStyleElement}*/(document.createElementNS(document.head.namespaceURI, 'style'));
-    css.setAttribute('media', 'screen');
-    css.setAttribute('type', 'text/css');
-    css.appendChild(document.createTextNode(viewer_css));
-    document.head.appendChild(css);
-
-    css = /**@type{!HTMLStyleElement}*/(document.createElementNS(document.head.namespaceURI, 'style'));
-    css.setAttribute('media', 'only screen and (max-device-width: 800px) and (max-device-height: 800px)');
-    css.setAttribute('type', 'text/css');
-    css.setAttribute('viewerTouch', '1');
-    css.appendChild(document.createTextNode(viewerTouch_css));
-    document.head.appendChild(css);
 
 }());
