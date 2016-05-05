@@ -40,11 +40,11 @@ function PDFViewerPlugin() {
     function init(callback) {
         var pluginCSS;
 
-        loadScript("<%= javascript_path('viewerjs/compatibility') %>", function () {
-            loadScript("<%= javascript_path('viewerjs/pdf') %>");
-            loadScript("<%= javascript_path('viewerjs/ui_utils') %>");
-            loadScript("<%= javascript_path('viewerjs/text_layer_builder') %>");
-            loadScript("<%= javascript_path('viewerjs/pdfjsversion') %>", callback);
+        loadScript("<%= javascript_url('viewerjs/compatibility') %>", function () {
+            loadScript("<%= javascript_url('viewerjs/pdf') %>");
+            loadScript("<%= javascript_url('viewerjs/ui_utils') %>");
+            loadScript("<%= javascript_url('viewerjs/text_layer_builder') %>");
+            loadScript("<%= javascript_url('viewerjs/pdfjsversion') %>", callback);
         });
 
     }
@@ -240,7 +240,7 @@ function PDFViewerPlugin() {
 
 
         init(function () {
-            PDFJS.workerSrc = "<%=javascript_path('pdf.worker.js') %>";
+            PDFJS.workerSrc = "<%=javascript_url('pdf.worker.js') %>";
             PDFJS.getDocument(location).then(function loadPDF(doc) {
                 pdfDocument = doc;
                 container = viewContainer;

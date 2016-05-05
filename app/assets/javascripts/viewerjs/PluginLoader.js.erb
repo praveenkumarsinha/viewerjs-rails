@@ -58,7 +58,7 @@
                 supportsFileExtension: function(extension) {
                     return (odfFileExtensions.indexOf(extension) !== -1);
                 },
-                path: "<%=javascript_path('viewerjs/ODFViewerPlugin') %>",
+                path: "<%=javascript_url('viewerjs/ODFViewerPlugin') %>",
                 getClass: function() { return ODFViewerPlugin; }
             };
         }()),
@@ -69,7 +69,7 @@
             supportsFileExtension: function(extension) {
                 return (extension === 'pdf');
             },
-            path: "<%=javascript_path('viewerjs/PDFViewerPlugin') %>",
+            path: "<%=javascript_url('viewerjs/PDFViewerPlugin') %>",
             getClass: function() { return PDFViewerPlugin; }
         }
     ];
