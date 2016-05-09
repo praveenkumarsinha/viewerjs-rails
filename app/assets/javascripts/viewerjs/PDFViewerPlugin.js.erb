@@ -40,12 +40,16 @@ function PDFViewerPlugin() {
     function init(callback) {
         var pluginCSS;
 
-        loadScript("<%= javascript_url('viewerjs/compatibility') %>", function () {
-            loadScript("<%= javascript_url('viewerjs/pdf') %>");
-            loadScript("<%= javascript_url('viewerjs/ui_utils') %>");
-            loadScript("<%= javascript_url('viewerjs/text_layer_builder') %>");
-            loadScript("<%= javascript_url('viewerjs/pdfjsversion') %>", callback);
-        });
+        if(typeof pdfjs_version == 'undefined') {
+          loadScript("<%= javascript_url('viewerjs/compatibility') %>", function () {
+              loadScript("<%= javascript_url('viewerjs/pdf') %>");
+              loadScript("<%= javascript_url('viewerjs/ui_utils') %>");
+              loadScript("<%= javascript_url('viewerjs/text_layer_builder') %>");
+              loadScript("<%= javascript_url('viewerjs/pdfjsversion') %>", callback);
+          });
+        } else {
+          callback();
+        }
 
     }
 

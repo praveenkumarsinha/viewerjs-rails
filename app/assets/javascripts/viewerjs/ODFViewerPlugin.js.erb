@@ -49,7 +49,11 @@ function ODFViewerPlugin() {
             callback();
         };
 
-        document.head.appendChild(lib);
+        if(typeof webodf == 'undefined') {
+          document.head.appendChild(lib);
+        } else {
+          callback();
+        }
     }
 
     // that should probably be provided by webodf
