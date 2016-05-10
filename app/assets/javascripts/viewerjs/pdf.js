@@ -2589,10 +2589,10 @@ var WorkerTransport = (function WorkerTransportClosure() {
         // other files and resolves the promise. In production only the
         // pdf.worker.js file is needed.
 //#if !PRODUCTION
-        Util.loadScript(PDFJS.workerSrc);
+        //Util.loadScript(PDFJS.workerSrc);
 //#endif
 //#if PRODUCTION && SINGLE_FILE
-//      PDFJS.fakeWorkerFilesLoadedCapability.resolve();
+        PDFJS.fakeWorkerFilesLoadedCapability.resolve();
 //#endif
 //#if PRODUCTION && !SINGLE_FILE
 //      Util.loadScript(PDFJS.workerSrc, function() {
